@@ -351,6 +351,23 @@ h3 {
 }
 
 @media(max-width:900px){
+    @media(max-width:900px){
+  section:not(#home) {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .section-inner > h2 {
+    margin-bottom: 36px;
+  }
+
+  section {padding:100px 24px;}
+
+  nav {padding:20px 24px;}
+
+  ...
+}
+  }
 
   .bball-gallery{
     grid-template-columns:1fr;
@@ -617,6 +634,27 @@ footer div:last-child {
   footer div:last-child {
     text-align:center;
   }
+} 
+/* Standard section spacing */
+section:not(#home) {
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+.section-inner > h2 {
+  margin-bottom: 45px;
+}
+
+.about-content {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.projects-list,
+.academics-grid,
+.skills-wrap,
+.certificates-grid {
+  margin-top: 0;
 }
 </style>
 </head>
