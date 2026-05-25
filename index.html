@@ -314,8 +314,9 @@ h3 {
 
 .bball-gallery{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
+  grid-template-columns:1.25fr 1fr;
+  grid-template-rows:repeat(4, 155px);
+  gap:14px;
 }
 
 .bball-gallery a{
@@ -328,7 +329,7 @@ h3 {
 
 .bball-gallery .bball-img{
   width:100%;
-  height:260px;
+  height:100%;
   object-fit:cover;
 }
 
@@ -338,7 +339,7 @@ h3 {
 }
 
 .featured{
-  grid-row:auto;
+  grid-row:span 4;
 }
 
 @media(max-width:900px){
