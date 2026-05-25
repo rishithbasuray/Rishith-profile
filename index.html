@@ -314,15 +314,7 @@ h3 {
 
 .bball-gallery{
   display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  grid-template-rows:220px 220px;
-  gap:16px;
-}
-
-.bball-gallery{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr;
-  grid-template-rows:220px 220px;
+  grid-template-columns:1fr 1fr;
   gap:16px;
 }
 
@@ -331,14 +323,13 @@ h3 {
   overflow:hidden;
   border-radius:12px;
   line-height:0;
+  cursor:pointer;
 }
 
 .bball-gallery .bball-img{
   width:100%;
-  height:100%;
+  height:260px;
   object-fit:cover;
-  transition:transform .35s ease,
-             filter .35s ease;
 }
 
 .bball-gallery a:hover .bball-img{
@@ -347,7 +338,7 @@ h3 {
 }
 
 .featured{
-  grid-row:span 2;
+  grid-row:auto;
 }
 
 @media(max-width:900px){
