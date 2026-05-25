@@ -1,6 +1,3 @@
-Here is the full code with the gallery images made clickable. When you click any basketball photo, it opens the full image in a new tab.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +14,6 @@ Here is the full code with the gallery images made clickable. When you click any
   --bg: #1b1115;
   --nav: #4a1626;
   --surface: #f5ead8;
-  --surface2: #ead8bd;
   --card: #fff8ed;
   --burgundy: #6f1732;
   --burgundy-dark: #35101b;
@@ -56,7 +52,10 @@ nav{
   border-bottom:1px solid var(--border);
 }
 
-.nav-links{display:flex;gap:30px;}
+.nav-links{
+  display:flex;
+  gap:30px;
+}
 
 .nav-links a{
   text-decoration:none;
@@ -76,12 +75,15 @@ nav{
   color:var(--soft-gold);
 }
 
-section{padding:120px 60px;}
+section{
+  padding:110px 60px;
+}
 
 #home{
   min-height:100vh;
   display:flex;
   align-items:center;
+  padding:120px 60px;
   background:
     radial-gradient(circle at 82% 20%, rgba(200,167,106,0.14), transparent 30%),
     radial-gradient(circle at 12% 82%, rgba(111,23,50,0.10), transparent 34%),
@@ -199,40 +201,6 @@ h1 em{
   color:var(--obsidian);
 }
 
-.basketball-actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:24px;
-}
-
-.highlight-cta {
-  border:1px solid var(--gold);
-  background:var(--gold);
-  color:var(--obsidian);
-  font-weight:600;
-  box-shadow:0 10px 24px rgba(200,167,106,0.22);
-}
-
-.highlight-cta:hover {
-  background:var(--surface);
-  border-color:var(--surface);
-  color:var(--obsidian);
-  transform:translateY(-2px);
-}
-
-.gallery-cta {
-  border:1px solid var(--surface);
-  color:var(--surface);
-  font-weight:600;
-}
-
-.gallery-cta:hover {
-  background:var(--surface);
-  color:var(--obsidian);
-  transform:translateY(-2px);
-}
-
 .section-inner{
   max-width:1200px;
   margin:auto;
@@ -242,7 +210,7 @@ h2{
   font-family:'Cormorant Garamond',serif;
   font-size:3rem;
   font-weight:300;
-  margin-bottom:50px;
+  margin-bottom:45px;
   color:var(--surface);
 }
 
@@ -268,6 +236,18 @@ h3 {
 #projects h2,
 #contact h2 {
   color:var(--burgundy-dark);
+}
+
+.about-content {
+  max-width:800px;
+  margin:auto;
+  text-align:center;
+}
+
+.about-content p {
+  color:var(--muted);
+  line-height:1.8;
+  font-size:1.1rem;
 }
 
 .academics-grid{
@@ -306,17 +286,9 @@ h3 {
 .bball-img {
   width:100%;
   border-radius:8px;
-  margin-bottom:15px;
   border:1px solid var(--border);
   box-shadow:0 18px 40px rgba(0,0,0,0.26);
   transition:transform 0.3s, filter 0.3s;
-}
-
-.bball-gallery{
-  display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  grid-template-rows:220px 220px;
-  gap:16px;
 }
 
 .bball-gallery{
@@ -331,14 +303,13 @@ h3 {
   overflow:hidden;
   border-radius:12px;
   line-height:0;
+  cursor:pointer;
 }
 
 .bball-gallery .bball-img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:transform .35s ease,
-             filter .35s ease;
 }
 
 .bball-gallery a:hover .bball-img{
@@ -348,40 +319,6 @@ h3 {
 
 .featured{
   grid-row:span 2;
-}
-
-@media(max-width:900px){
-    @media(max-width:900px){
-  section:not(#home) {
-    padding-top: 90px;
-    padding-bottom: 90px;
-  }
-
-  .section-inner > h2 {
-    margin-bottom: 36px;
-  }
-
-  section {padding:100px 24px;}
-
-  nav {padding:20px 24px;}
-
-  ...
-}
-  }
-
-  .bball-gallery{
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-  }
-
-  .featured{
-    grid-row:auto;
-  }
-
-  .bball-gallery .bball-img{
-    height:260px;
-  }
-
 }
 
 .bball-stats {
@@ -430,6 +367,40 @@ h3 {
   left:0;
 }
 
+.basketball-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:24px;
+}
+
+.highlight-cta {
+  border:1px solid var(--gold);
+  background:var(--gold);
+  color:var(--obsidian);
+  font-weight:600;
+  box-shadow:0 10px 24px rgba(200,167,106,0.22);
+}
+
+.highlight-cta:hover {
+  background:var(--surface);
+  border-color:var(--surface);
+  color:var(--obsidian);
+  transform:translateY(-2px);
+}
+
+.gallery-cta {
+  border:1px solid var(--surface);
+  color:var(--surface);
+  font-weight:600;
+}
+
+.gallery-cta:hover {
+  background:var(--surface);
+  color:var(--obsidian);
+  transform:translateY(-2px);
+}
+
 .projects-list{
   display:flex;
   flex-direction:column;
@@ -444,6 +415,11 @@ h3 {
   display:flex;
   flex-direction:column;
   gap:10px;
+}
+
+.project-row p{
+  color:var(--muted);
+  line-height:1.8;
 }
 
 .project-link {
@@ -553,23 +529,18 @@ footer div:last-child {
   text-align:right;
 }
 
-.about-content {
-  max-width:800px;
-  margin:auto;
-  text-align:center;
-  padding:20px;
-}
-
-.about-content p {
-  color:var(--muted);
-  line-height:1.8;
-  font-size:1.1rem;
-}
-
 @media(max-width:900px){
-  section {padding:100px 24px;}
+  section {
+    padding:90px 24px;
+  }
 
-  nav {padding:20px 24px;}
+  #home {
+    padding:110px 24px;
+  }
+
+  nav {
+    padding:20px 24px;
+  }
 
   .hero-inner,
   .bball-layout,
@@ -595,24 +566,35 @@ footer div:last-child {
 
   .hamburger {display:block;}
 
-  .skills-wrap {grid-template-columns:1fr;}
+  .bball-gallery{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+  }
 
-  .certificates-grid {grid-template-columns:1fr;}
+  .featured{
+    grid-row:auto;
+  }
 
-  .bball-gallery {
+  .bball-gallery .bball-img{
+    height:260px;
+  }
+
+  .skills-wrap {
     grid-template-columns:1fr;
   }
 
-  .bball-gallery .bball-img,
-  .bball-featured {
-    height:auto !important;
+  .certificates-grid {
+    grid-template-columns:1fr;
   }
 
-  .bball-stats {justify-content:center;}
+  .bball-stats,
+  .basketball-actions {
+    justify-content:center;
+  }
 
-  .basketball-actions {justify-content:center;}
-
-  .about-content p {font-size:1rem;}
+  .about-content p {
+    font-size:1rem;
+  }
 
   .hero-right {
     justify-content:center;
@@ -634,27 +616,6 @@ footer div:last-child {
   footer div:last-child {
     text-align:center;
   }
-} 
-/* Standard section spacing */
-section:not(#home) {
-  padding-top: 110px;
-  padding-bottom: 110px;
-}
-
-.section-inner > h2 {
-  margin-bottom: 45px;
-}
-
-.about-content {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.projects-list,
-.academics-grid,
-.skills-wrap,
-.certificates-grid {
-  margin-top: 0;
 }
 </style>
 </head>
@@ -680,7 +641,7 @@ section:not(#home) {
     <div class="hero-left">
       <div class="hero-eyebrow">Portfolio · Grade 11 · 2025</div>
       <h1>Rishith<br><em>Basuray</em></h1>
-      <div class="hero-tagline">Aspiring Economist | Basketball Enthusiast | </div>
+      <div class="hero-tagline">Aspiring Economist | Basketball Enthusiast</div>
       <p class="hero-desc">Balancing academics and sports with discipline.</p>
       <a href="#academics" class="hero-cta">Explore Profile</a>
       <a href="#about" class="about-cta">About Me</a>
@@ -723,8 +684,8 @@ section:not(#home) {
         <p>Economics, Statistics, Calculus</p>
       </div>
       <div class="acad-card">
-        <h3>Matrix Project</h3>
-        <p>Developed a Python program for <strong>Matrix Addition and Subtraction</strong> using NumPy.</p>
+        <h3>Gender Discrimination Field Study</h3>
+        <p>Conducted a field study on gender discrimination in India, focusing on school life, sports environments, and equal opportunities through surveys and interviews.</p>
       </div>
       <div class="acad-card">
         <h3>Analytical Thinking</h3>
@@ -734,60 +695,34 @@ section:not(#home) {
   </div>
 </section>
 
-<!-- REPLACE YOUR ENTIRE BASKETBALL SECTION WITH THIS -->
-
 <section id="sports">
   <div class="section-inner">
     <h2>Basketball</h2>
 
     <div class="bball-layout">
-
-      <!-- Basketball Gallery -->
       <div class="bball-gallery">
-
-        <!-- Featured Image -->
         <a href="basketball1.jpg.jpeg" target="_blank" class="featured">
-          <img src="basketball1.jpg.jpeg"
-               alt="Rishith with Basketball Trophy"
-               class="bball-img">
+          <img src="basketball1.jpg.jpeg" alt="Rishith with Basketball Trophy" class="bball-img">
         </a>
 
-        <!-- Supporting Images -->
         <a href="basketball2jpg.jpeg" target="_blank">
-          <img src="basketball2jpg.jpeg"
-               alt="Basketball Photo 2"
-               class="bball-img">
+          <img src="basketball2jpg.jpeg" alt="Basketball Photo 2" class="bball-img">
         </a>
 
         <a href="basketball3jpg.jpeg" target="_blank">
-          <img src="basketball3jpg.jpeg"
-               alt="Basketball Photo 3"
-               class="bball-img">
+          <img src="basketball3jpg.jpeg" alt="Basketball Photo 3" class="bball-img">
         </a>
 
         <a href="basketball4jpg.jpeg" target="_blank">
-          <img src="basketball4jpg.jpeg"
-               alt="Basketball Photo 4"
-               class="bball-img">
+          <img src="basketball4jpg.jpeg" alt="Basketball Photo 4" class="bball-img">
         </a>
-
-        <a href="basketball5jpg.jpeg" target="_blank">
-          <img src="basketball5jpg.jpeg"
-               alt="Basketball Photo 5"
-               class="bball-img">
-        </a>
-
       </div>
 
-      <!-- Basketball Content -->
       <div>
-
         <p>
-          As a <strong>Point Guard and Team Captain</strong>,
-          I’ve led my team to multiple victories, combining
-          leadership, strategy, and athletic skill.
-          Basketball has taught me discipline, teamwork,
-          and resilience.
+          As a <strong>Point Guard and Team Captain</strong>, I’ve led my team to multiple victories,
+          combining leadership, strategy, and athletic skill. Basketball has taught me discipline,
+          teamwork, and resilience.
         </p>
 
         <ul class="achievements">
@@ -798,7 +733,6 @@ section:not(#home) {
         </ul>
 
         <div class="bball-stats">
-
           <div class="bball-stat">
             <div class="bball-stat-label">Height</div>
             <div class="bball-stat-value">184 cm</div>
@@ -813,133 +747,86 @@ section:not(#home) {
             <div class="bball-stat-label">Position</div>
             <div class="bball-stat-value">Point Guard</div>
           </div>
-
         </div>
 
         <div class="basketball-actions">
-
-          <a href="https://drive.google.com/drive/folders/1LBYugmSXaQcG9Z29s7NufthQAaGEheEK?usp=drive_link"
-             class="highlight-cta"
-             target="_blank">
-             Watch My Highlights
+          <a href="https://drive.google.com/drive/folders/1LBYugmSXaQcG9Z29s7NufthQAaGEheEK?usp=drive_link" class="highlight-cta" target="_blank">
+            Watch My Highlights
           </a>
 
-                 </div>
-
+          <a href="https://drive.google.com/drive/folders/1mp8-RzSaXDEcM7pRqZmefhPEs1gES807?usp=drive_link" class="gallery-cta" target="_blank">
+            View Photo Gallery
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Extracurriculars Section -->
 <section id="extracurriculars">
   <div class="section-inner">
     <h2>Extracurriculars</h2>
 
-   <div class="projects-list">
+    <div class="projects-list">
+      <div class="project-row">
+        <h3>Vice Captain of School</h3>
+        <p>Serving as Vice Captain, helping organize school events, student activities, and leadership initiatives.</p>
+      </div>
 
-  <div class="project-row">
-    <h3>Vice Captain of School</h3>
-    <p>
-      Serving as Vice Captain, helping organize school events,
-      student activities, and leadership initiatives.
-    </p>
-  </div>
+      <div class="project-row">
+        <h3>School Nature Club</h3>
+        <p>Part of the School Nature Club, contributing to sustainability initiatives and supporting activities aligned with the United Nations Sustainable Development Goals.</p>
+      </div>
 
-  <div class="project-row">
-    <h3>School Nature Club</h3>
-    <p>
-      Part of the School Nature Club, contributing to sustainability initiatives
-      and supporting activities aligned with the United Nations Sustainable
-      Development Goals.
-    </p>
-  </div>
+      <div class="project-row">
+        <h3>Model United Nations</h3>
+        <p>Participated in MUN, developing public speaking, diplomacy, research, and debate skills through structured committee discussions.</p>
+      </div>
 
-  <div class="project-row">
-    <h3>Model United Nations</h3>
-    <p>
-      Participated in MUN, developing public speaking, diplomacy,
-      research, and debate skills through structured committee discussions.
-    </p>
-  </div>
+      <div class="project-row">
+        <h3>School Debate</h3>
+        <p>Helped organize a school debate and won the Best Speaker Award, demonstrating communication, persuasion, and critical thinking skills.</p>
+      </div>
 
-  <div class="project-row">
-    <h3>School Debate</h3>
-    <p>
-      Helped organize a school debate and won the Best Speaker Award,
-      demonstrating communication, persuasion, and critical thinking skills.
-    </p>
-  </div>
+      <div class="project-row">
+        <h3>Basketball Leadership</h3>
+        <p>Leading the school basketball team as Point Guard and Team Captain, representing the state at national championships.</p>
+      </div>
 
-  <div class="project-row">
-    <h3>Basketball Leadership</h3>
-    <p>
-      Leading the school basketball team as Point Guard and Team Captain,
-      representing the state at national championships.
-    </p>
-  </div>
-
-  <div class="project-row">
-    <h3>Economics & Research</h3>
-    <p>
-      Exploring inflation trends, economic crises, and statistical analysis
-      through independent study and school projects.
-    </p>
-  </div>
-
-</div>
+      <div class="project-row">
+        <h3>Economics & Research</h3>
+        <p>Exploring inflation trends, economic crises, and statistical analysis through independent study and school projects.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Projects Section -->
 <section id="projects">
   <div class="section-inner">
-
     <h2>Projects</h2>
 
     <div class="projects-list">
-
-     <div class="project-row">
-  <h3>Gender Discrimination Field Study</h3>
-
-  <p>
-    Field study on gender discrimination in India, focusing on school life,
-    sports environments, and equal opportunities through surveys and interviews.
-  </p>
-
-  <p>
-    <strong>Tools:</strong> Survey Research, Interviews, Data Analysis, Graphs
-  </p>
-
-  <a href="Gender Discrimination Field Study Project.pdf" class="project-link" target="_blank">
-    Read Field Study →
-  </a>
-</div>
       <div class="project-row">
-        <h3>Economic Analysis Report</h3>
-
-        <p>
-          Research project analyzing inflation trends in India
-          using historical economic data and statistics.
-        </p>
-
-        <p>
-          <strong>Tools:</strong> Excel, Python, Pandas
-        </p>
-
-        <a href="#" class="project-link">
-          Read Report →
-        </a>
+        <h3>Gender Discrimination Field Study</h3>
+        <p>Field study on gender discrimination in India, focusing on school life, sports environments, and equal opportunities through surveys and interviews.</p>
+        <p><strong>Tools:</strong> Survey Research, Interviews, Data Analysis, Graphs</p>
+        <a href="Gender Discrimination Field Study Project.pdf" class="project-link" target="_blank">Read Field Study →</a>
       </div>
 
+      <div class="project-row">
+        <h3>Economic Analysis Report</h3>
+        <p>Research project analyzing inflation trends in India using historical economic data and statistics.</p>
+        <p><strong>Tools:</strong> Excel, Python, Pandas</p>
+        <a href="#" class="project-link">Read Report →</a>
+      </div>
     </div>
-
   </div>
 </section>
 
 <section id="skills">
   <div class="section-inner">
     <h2>Skills</h2>
+
     <div class="skills-wrap">
       <div class="skill-item">Analytical Thinking</div>
       <div class="skill-item">Problem Solving</div>
@@ -970,15 +857,19 @@ section:not(#home) {
 <section id="contact">
   <div class="section-inner">
     <h2>Contact</h2>
+
     <div class="contact-layout">
       <div>
         <h3>Email</h3>
         <p><a href="mailto:rishithbasuray@gmail.com" class="contact-link">rishithbasuray@gmail.com</a></p>
+
         <h3>Phone</h3>
         <p><a href="tel:9986576516" class="contact-link">+91 99865 76516</a></p>
+
         <h3>Location</h3>
         <p>Bangalore, Karnataka</p>
       </div>
+
       <div>
         <h3>Social</h3>
         <p><a href="https://www.linkedin.com/in/rishith-basuray-b3bb37391/" class="contact-link" target="_blank">LinkedIn</a></p>
@@ -1002,4 +893,3 @@ section:not(#home) {
 
 </body>
 </html>
-```
