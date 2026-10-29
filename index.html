@@ -1,935 +1,1138 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rishith Basuray | Portfolio</title>
-<meta name="description" content="Portfolio of Rishith Basuray, a student passionate about Economics, Mathematics, and Basketball.">
-<meta name="keywords" content="Rishith Basuray, portfolio, economics, mathematics, basketball, student, Point Guard, Team Captain">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Portfolio of Rishith Basuray: student, point guard and founder of CourtBase, passionate about Economics, Mathematics and Basketball.">
+<meta name="keywords" content="Rishith Basuray, portfolio, economics, mathematics, basketball, point guard, team captain, CourtBase">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #1b1115;
-  --surface: #f5ead8;
-  --card: #fff8ed;
-  --burgundy: #6f1732;
-  --burgundy-dark: #35101b;
-  --emerald: #2e5a45;
-  --gold: #c8a76a;
-  --soft-gold: #dec895;
-  --obsidian: #151111;
-  --text-light: #f5ead8;
-  --text-dark: #251d1a;
-  --muted: #786c60;
-  --border: rgba(200,167,106,0.26);
-  --white: #ffffff;
+:root{
+  --bg:#1b1115;
+  --surface:#f5ead8;
+  --card:#fff8ed;
+  --burgundy:#6f1732;
+  --burgundy-dark:#35101b;
+  --emerald:#2e5a45;
+  --gold:#c8a76a;
+  --soft-gold:#dec895;
+  --obsidian:#151111;
+  --text-light:#f5ead8;
+  --text-dark:#251d1a;
+  --muted:#786c60;
+  --muted-light:#cbb99c;
+  --border:rgba(200,167,106,0.26);
+  --line-dark:rgba(58,9,24,0.14);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --serif:'Cormorant Garamond',serif;
+  --sans:'DM Sans',sans-serif;
+  --gutter:clamp(20px,5vw,60px);
 }
 
-* {margin:0;padding:0;box-sizing:border-box;}
-html {scroll-behavior:smooth;}
-
-body {
-  background:linear-gradient(135deg,#1b1115 0%,#2a151d 48%,#120e0f 100%);
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
   color:var(--text-light);
-  font-family:'DM Sans',sans-serif;
+  font-family:var(--sans);
   overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+::selection{background:var(--gold);color:var(--obsidian);}
+
+/* ---------- Scroll progress + nav ---------- */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:100%;
+  background:linear-gradient(90deg,var(--gold),var(--soft-gold));
+  transform-origin:0 50%;transform:scaleX(0);
+  z-index:1100;
 }
 
 nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:22px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(74,22,38,0.96);
-  backdrop-filter:blur(18px);
+  position:fixed;top:0;left:0;width:100%;
+  padding:22px var(--gutter);
+  display:flex;justify-content:space-between;align-items:center;
   z-index:1000;
-  border-bottom:1px solid var(--border);
+  transition:padding .4s var(--ease),background .4s var(--ease),border-color .4s;
+  border-bottom:1px solid transparent;
 }
-
-.nav-links{
-  display:flex;
-  gap:30px;
+nav.scrolled{
+  padding:14px var(--gutter);
+  background:rgba(53,16,27,0.88);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-color:var(--border);
 }
-
-.nav-links a{
+.brand{
+  font-family:var(--serif);
+  font-size:1.5rem;
+  letter-spacing:.04em;
   text-decoration:none;
-  color:#f5ead8;
-  font-size:0.82rem;
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-  transition:.3s;
+  color:var(--burgundy-dark);
+  transition:color .4s;
 }
+.brand span{color:var(--gold);}
+nav.scrolled .brand{color:var(--surface);}
 
-.nav-links a:hover{color:var(--soft-gold);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{
+  position:relative;
+  text-decoration:none;
+  color:var(--burgundy-dark);
+  font-size:.74rem;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  padding:6px 0;
+  transition:color .3s;
+}
+nav.scrolled .nav-links a{color:var(--surface);}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--gold);transform:scaleX(0);transform-origin:right;
+  transition:transform .45s var(--ease);
+}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left;}
+.nav-links a.active{color:var(--burgundy);}
+nav.scrolled .nav-links a.active{color:var(--soft-gold);}
 
 .hamburger{
-  display:none;
-  cursor:pointer;
-  font-size:1.5rem;
-  color:var(--soft-gold);
+  display:none;background:none;border:0;cursor:pointer;
+  width:30px;height:20px;position:relative;
 }
-
-section{
-  padding:110px 60px;
+.hamburger span{
+  position:absolute;left:0;height:1.5px;width:100%;
+  background:var(--burgundy-dark);transition:.4s var(--ease);
 }
+nav.scrolled .hamburger span{background:var(--soft-gold);}
+.hamburger span:nth-child(1){top:0;}
+.hamburger span:nth-child(2){top:9px;}
+.hamburger span:nth-child(3){top:18px;}
+.hamburger.open span:nth-child(1){top:9px;transform:rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){top:9px;transform:rotate(-45deg);}
 
-#home{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:120px 60px;
-  background:
-    radial-gradient(circle at 82% 20%, rgba(200,167,106,0.14), transparent 30%),
-    radial-gradient(circle at 12% 82%, rgba(111,23,50,0.10), transparent 34%),
-    linear-gradient(135deg, #f7eddf 0%, #f2dfc5 52%, #ead2b0 100%);
+/* ---------- Shared ---------- */
+section{padding:130px var(--gutter);position:relative;}
+.section-inner{max-width:1200px;margin:auto;}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  font-weight:600;color:var(--gold);margin-bottom:18px;
 }
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor;}
 
-.hero-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:80px;
-  width:100%;
-  max-width:1200px;
-  margin:auto;
-}
-
-.hero-left{flex:1;}
-
-.hero-right{
-  flex:1;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.profile-img{text-align:center;}
-
-.profile-pic{
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  object-fit:cover;
-  border:4px solid var(--soft-gold);
-  box-shadow:0 20px 42px rgba(36,29,26,0.18), 0 0 18px rgba(200,167,106,0.20);
-}
-
-.hero-eyebrow{
-  color:var(--burgundy);
-  font-size:.75rem;
-  letter-spacing:.2em;
-  margin-bottom:20px;
-  text-transform:uppercase;
-  font-weight:600;
-}
-
-h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.8rem,5vw,4.8rem);
-  font-weight:300;
-  line-height:1.05;
-  margin-bottom:14px;
-  color:var(--burgundy-dark);
-}
-
-.hero-tagline{
-  font-size:1.1rem;
-  color:#66594f;
-  margin-bottom:20px;
-  font-weight:300;
-}
-
-h1 em{
-  color:var(--burgundy);
-  font-style:italic;
-}
-
-.hero-desc{
-  color:#76675b;
-  line-height:1.9;
-  max-width:500px;
-  margin-bottom:35px;
-}
-
-.hero-cta,
-.about-cta,
-.contact-cta,
-.highlight-cta,
-.gallery-cta{
-  display:inline-block;
-  padding:14px 28px;
-  text-decoration:none;
-  transition:.3s;
-  border-radius:2px;
-}
-
-.hero-cta{
-  border:1px solid var(--burgundy);
-  color:var(--burgundy);
-  margin-right:15px;
-}
-
-.hero-cta:hover{
-  background:var(--burgundy);
-  color:var(--white);
-}
-
-.about-cta{
-  border:1px solid var(--obsidian);
-  color:var(--obsidian);
-  margin-right:15px;
-}
-
-.about-cta:hover{
-  background:var(--obsidian);
-  color:var(--surface);
-}
-
-.contact-cta{
-  border:1px solid var(--gold);
-  color:var(--obsidian);
-}
-
-.contact-cta:hover{
-  background:var(--gold);
-  color:var(--obsidian);
-}
-
-.section-inner{
-  max-width:1200px;
-  margin:auto;
-}
-
+h1,h2,h3,h4{font-family:var(--serif);font-weight:300;}
 h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:3rem;
-  font-weight:300;
-  margin-bottom:45px;
+  font-size:clamp(2.4rem,5vw,3.8rem);
+  line-height:1.05;
+  margin-bottom:56px;
   color:var(--surface);
 }
+h2 em{font-style:italic;color:var(--gold);}
+h3{font-size:1.55rem;font-weight:400;color:var(--burgundy);margin-bottom:12px;line-height:1.2;}
 
-h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.4rem;
-  margin-bottom:15px;
-  color:var(--burgundy);
+.light{background:var(--surface);color:var(--text-dark);}
+.light h2{color:var(--burgundy-dark);}
+.light h2 em{color:var(--burgundy);}
+.light .eyebrow{color:var(--burgundy);}
+
+.dark{
+  background:
+    radial-gradient(circle at 85% 0%, rgba(200,167,106,0.12), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgba(111,23,50,0.28), transparent 40%),
+    linear-gradient(135deg,#171113 0%,#2a151d 54%,#120e0f 100%);
 }
 
-.about-section,
-#academics,
-#extracurriculars,
-#projects,
-#contact{
-  background:var(--surface);
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+.reveal[data-delay="1"]{transition-delay:.1s;}
+.reveal[data-delay="2"]{transition-delay:.2s;}
+.reveal[data-delay="3"]{transition-delay:.3s;}
+.reveal[data-delay="4"]{transition-delay:.4s;}
+
+/* Buttons */
+.btn{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 30px;
+  font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  text-decoration:none;border:1px solid var(--burgundy);color:var(--burgundy);
+  transition:color .45s var(--ease),border-color .45s,transform .3s var(--ease);
+}
+.btn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--burgundy);transform:translateY(101%);
+  transition:transform .45s var(--ease);
+}
+.btn:hover{color:var(--surface);}
+.btn:hover::before{transform:none;}
+.btn .arrow{transition:transform .35s var(--ease);}
+.btn:hover .arrow{transform:translateX(4px);}
+.btn.solid{background:var(--burgundy);color:var(--surface);}
+.btn.solid::before{background:var(--burgundy-dark);}
+.btn.gold{border-color:var(--gold);background:var(--gold);color:var(--obsidian);}
+.btn.gold::before{background:var(--surface);}
+.btn.gold:hover{color:var(--obsidian);border-color:var(--surface);}
+.btn.ghost-light{border-color:rgba(245,234,216,.5);color:var(--surface);}
+.btn.ghost-light::before{background:var(--surface);}
+.btn.ghost-light:hover{color:var(--obsidian);}
+
+.text-link{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--burgundy);text-decoration:none;font-size:.86rem;font-weight:500;
+  letter-spacing:.04em;margin-top:14px;
+  background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;
+  transition:background-size .4s var(--ease),color .3s;
+}
+.text-link:hover{background-size:100% 1px;color:var(--emerald);}
+.dark .text-link{color:var(--soft-gold);}
+.dark .text-link:hover{color:var(--surface);}
+
+/* Spotlight card (follows cursor) */
+.spot{
+  position:relative;overflow:hidden;
+  --mx:50%;--my:50%;
+}
+.spot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(420px circle at var(--mx) var(--my),rgba(200,167,106,0.18),transparent 45%);
+  transition:opacity .4s;
+}
+.spot:hover::after{opacity:1;}
+
+/* ---------- Hero ---------- */
+#home{
+  min-height:100vh;min-height:100svh;
+  display:flex;align-items:center;
+  padding:140px var(--gutter) 90px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(200,167,106,0.20), transparent 32%),
+    radial-gradient(circle at 10% 85%, rgba(111,23,50,0.12), transparent 36%),
+    linear-gradient(135deg,#f7eddf 0%,#f2dfc5 52%,#ead2b0 100%);
   color:var(--text-dark);
 }
+.court{
+  position:absolute;inset:auto -10% -35% auto;width:min(900px,95vw);
+  opacity:.5;pointer-events:none;
+}
+.court path,.court circle,.court line{
+  fill:none;stroke:var(--gold);stroke-width:1.2;
+  stroke-dasharray:1600;stroke-dashoffset:1600;
+  animation:draw 3.2s var(--ease) .4s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0;}}
 
-.about-section h2,
-#academics h2,
-#extracurriculars h2,
-#projects h2,
-#contact h2{
+.hero-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center;
+  width:100%;max-width:1200px;margin:auto;
+}
+.hero-left .eyebrow{color:var(--burgundy);}
+h1{
+  font-size:clamp(3.4rem,8.5vw,7rem);
+  line-height:.95;letter-spacing:-.01em;
   color:var(--burgundy-dark);
+  margin-bottom:26px;
 }
+h1 .line{display:block;overflow:hidden;padding-bottom:.08em;}
+h1 .line > span{display:inline-block;transform:translateY(110%);animation:rise 1.2s var(--ease) forwards;}
+h1 .line:nth-child(2) > span{animation-delay:.15s;}
+h1 em{font-style:italic;color:var(--burgundy);}
+@keyframes rise{to{transform:none;}}
 
-.about-content{
-  max-width:800px;
-  margin:auto;
-  text-align:center;
+.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp 1s var(--ease) forwards;}
+@keyframes fadeUp{to{opacity:1;transform:none;}}
+
+.hero-tagline{
+  font-size:1.08rem;color:#5e5148;margin-bottom:12px;min-height:1.7em;
+  animation-delay:.5s;
 }
+.rotator{color:var(--burgundy);font-weight:500;border-right:1.5px solid var(--gold);padding-right:4px;}
+.hero-desc{color:#76675b;line-height:1.85;max-width:500px;margin-bottom:36px;animation-delay:.65s;}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;animation-delay:.8s;}
 
-.about-content p{
-  color:var(--muted);
-  line-height:1.8;
-  font-size:1.1rem;
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  margin-top:56px;border-top:1px solid var(--line-dark);
+  animation-delay:1s;
 }
-
-.academics-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1px;
-  background:rgba(58,9,24,0.18);
-  border:1px solid rgba(58,9,24,0.12);
+.hero-stat{padding:22px 16px 0 0;}
+.hero-stat + .hero-stat{padding-left:18px;border-left:1px solid var(--line-dark);}
+.hero-stat .num{
+  font-family:var(--serif);font-size:clamp(2rem,3.4vw,2.8rem);
+  color:var(--burgundy-dark);line-height:1;
 }
+.hero-stat .lbl{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.4;}
 
-.acad-card{
-  background:var(--card);
-  padding:45px;
+.hero-right{display:flex;justify-content:center;animation-delay:.3s;}
+.portrait{position:relative;width:min(380px,78vw);aspect-ratio:1;}
+.portrait::before{
+  content:"";position:absolute;inset:-14px;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--gold),transparent 30%,var(--burgundy) 55%,transparent 75%,var(--gold));
+  animation:spin 14s linear infinite;
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+          mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
 }
-
-.acad-card p{
-  color:var(--muted);
-  line-height:1.8;
+@keyframes spin{to{transform:rotate(360deg);}}
+.portrait img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;
+  border:4px solid var(--soft-gold);
+  box-shadow:0 30px 60px rgba(53,16,27,0.25),0 0 30px rgba(200,167,106,0.25);
 }
-
-#sports,
-#skills{
-  background:
-    radial-gradient(circle at top right, rgba(200,167,106,0.12), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(111,23,50,0.20), transparent 36%),
-    linear-gradient(135deg, #171113 0%, #2a151d 54%, #120e0f 100%);
-}
-
-.bball-layout{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:start;
-}
-
-.bball-gallery{
-  display:grid;
-  grid-template-columns:1.25fr 1fr;
-  grid-template-rows:repeat(4, 155px);
-  gap:14px;
-}
-
-.bball-gallery a{
-  display:block;
-  overflow:hidden;
-  border-radius:12px;
-  line-height:0;
-  cursor:pointer;
-  border:1px solid var(--border);
-  box-shadow:0 18px 40px rgba(0,0,0,0.26);
-}
-
-.bball-gallery .bball-img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .35s ease, filter .35s ease;
-}
-
-.bball-gallery a:hover .bball-img{
-  transform:scale(1.05);
-  filter:brightness(1.08);
-}
-
-.featured{
-  grid-row:span 4;
-}
-
-.bball-stats{
-  margin-top:20px;
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.bball-stat{
-  background:rgba(244,234,216,0.96);
-  padding:10px 15px;
-  border-radius:4px;
-  border:1px solid var(--border);
-}
-
-.bball-stat-label{
-  font-size:0.75rem;
-  color:var(--muted);
-  margin-bottom:5px;
-}
-
-.bball-stat-value{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.2rem;
-  color:var(--burgundy);
-}
-
-.achievements{
-  list-style:none;
-  padding-left:0;
-  margin-top:20px;
-}
-
-.achievements li{
-  margin-bottom:10px;
-  color:#dfccb1;
-  position:relative;
-  padding-left:20px;
-}
-
-.achievements li:before{
-  content:"•";
-  color:var(--gold);
+.badge{
   position:absolute;
-  left:0;
-}
-
-.basketball-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:24px;
-}
-
-.highlight-cta{
-  border:1px solid var(--gold);
-  background:var(--gold);
-  color:var(--obsidian);
-  font-weight:600;
-  box-shadow:0 10px 24px rgba(200,167,106,0.22);
-}
-
-.highlight-cta:hover{
-  background:var(--surface);
-  border-color:var(--surface);
-  color:var(--obsidian);
-  transform:translateY(-2px);
-}
-
-.gallery-cta{
-  border:1px solid var(--surface);
-  color:var(--surface);
-  font-weight:600;
-}
-
-.gallery-cta:hover{
-  background:var(--surface);
-  color:var(--obsidian);
-  transform:translateY(-2px);
-}
-
-.projects-list{
-  display:flex;
-  flex-direction:column;
-  gap:1px;
-  background:rgba(58,9,24,0.18);
-  border:1px solid rgba(58,9,24,0.12);
-}
-
-.project-row{
-  background:var(--card);
-  padding:35px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.project-row p{
-  color:var(--muted);
-  line-height:1.8;
-}
-
-.project-link{
-  color:var(--burgundy);
-  text-decoration:none;
-  font-size:0.9rem;
-  transition:0.3s;
-}
-
-.project-link:hover{
-  color:var(--emerald);
-  text-decoration:underline;
-}
-
-.skills-wrap{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  background:transparent;
-  border:none;
-}
-
-.skill-item{
-  background:rgba(244,234,216,0.96);
-  padding:24px 20px;
-  text-align:center;
-  color:var(--obsidian);
+  background:rgba(255,248,237,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border:1px solid var(--border);
-  border-radius:8px;
-  box-shadow:0 10px 24px rgba(0,0,0,0.10);
+  padding:12px 16px;border-radius:999px;
+  font-size:.76rem;color:var(--burgundy-dark);font-weight:500;letter-spacing:.04em;
+  box-shadow:0 14px 30px rgba(53,16,27,.14);
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+  animation:float 6s ease-in-out infinite;
 }
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(200,167,106,.25);}
+.badge.b1{top:8%;left:-14%;}
+.badge.b2{bottom:10%;right:-12%;animation-delay:-3s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
 
-.certificates-section{
-  margin-top:80px;
-  padding-top:34px;
-  border-top:1px solid rgba(200,167,106,0.22);
+.scroll-cue{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  width:22px;height:36px;border:1px solid var(--burgundy);border-radius:12px;opacity:.6;
 }
+.scroll-cue::after{
+  content:"";position:absolute;top:7px;left:50%;width:2px;height:7px;margin-left:-1px;
+  background:var(--burgundy);border-radius:2px;animation:cue 1.8s ease-in-out infinite;
+}
+@keyframes cue{0%{opacity:0;transform:translateY(0);}40%{opacity:1;}100%{opacity:0;transform:translateY(12px);}}
 
-.certificates-section h2{
-  margin-bottom:28px;
+/* ---------- Marquee ---------- */
+.marquee{
+  background:var(--burgundy-dark);
+  border-block:1px solid var(--border);
+  overflow:hidden;padding:20px 0;
 }
+.marquee-track{display:flex;width:max-content;animation:scroll 40s linear infinite;}
+.marquee:hover .marquee-track{animation-play-state:paused;}
+.marquee span{
+  font-family:var(--serif);font-style:italic;font-size:1.35rem;color:var(--surface);
+  padding:0 28px;white-space:nowrap;display:flex;align-items:center;gap:56px;
+}
+.marquee span::after{content:"✦";font-style:normal;font-size:.8rem;color:var(--gold);}
+@keyframes scroll{to{transform:translateX(-50%);}}
 
-.certificates-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(260px, 320px));
-  gap:18px;
+/* ---------- About ---------- */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:start;}
+.about-grid h2{margin-bottom:0;}
+.about-text p{color:var(--muted);line-height:1.95;font-size:1.06rem;margin-bottom:20px;}
+.about-text p:first-child::first-letter{
+  font-family:var(--serif);float:left;font-size:4.4rem;line-height:.8;
+  padding:6px 12px 0 0;color:var(--burgundy);
 }
+.pillars{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.pill{
+  padding:9px 16px;border:1px solid var(--line-dark);border-radius:999px;
+  font-size:.78rem;letter-spacing:.06em;color:var(--burgundy-dark);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.pill:hover{background:var(--burgundy);color:var(--surface);border-color:var(--burgundy);}
 
-.certificate-card{
-  background:rgba(244,234,216,0.96);
-  border:1px solid var(--border);
-  padding:20px 22px;
-  border-radius:8px;
-  text-align:center;
-  box-shadow:0 10px 24px rgba(0,0,0,0.12);
-  min-height:0;
+/* ---------- Academics ---------- */
+.acad-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--line-dark);border:1px solid var(--line-dark);
 }
+.acad-card{background:var(--card);padding:42px 36px;transition:background .4s;}
+.acad-card:hover{background:#fffdf8;}
+.acad-card.wide{grid-column:span 2;}
+.acad-card p{color:var(--muted);line-height:1.8;}
+.acad-card .kicker{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;}
+.big-num{
+  font-family:var(--serif);font-size:clamp(3.2rem,6vw,4.6rem);line-height:1;color:var(--burgundy-dark);margin:4px 0 12px;
+}
+.big-num small{font-size:.38em;color:var(--muted);margin-left:4px;}
+.score-bars{margin-top:18px;display:grid;gap:12px;}
+.bar-row{display:grid;grid-template-columns:120px 1fr 44px;align-items:center;gap:12px;font-size:.8rem;color:var(--muted);}
+.bar{height:4px;background:rgba(58,9,24,.08);border-radius:4px;overflow:hidden;}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--burgundy),var(--gold));transition:width 1.6s var(--ease);}
+.in .bar i{width:var(--w);}
+.bar-row b{color:var(--burgundy-dark);font-weight:600;text-align:right;}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.tag{font-size:.78rem;padding:7px 12px;background:rgba(111,23,50,.07);color:var(--burgundy-dark);border-radius:4px;}
 
-.certificate-card h4{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.15rem;
-  line-height:1.25;
-  margin-bottom:4px;
-  color:var(--burgundy);
+/* ---------- Basketball ---------- */
+.bball-top{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
+.gallery{
+  display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:repeat(4,140px);gap:12px;
 }
+.gallery button{
+  position:relative;overflow:hidden;border:1px solid var(--border);border-radius:10px;
+  cursor:zoom-in;padding:0;background:#000;
+  box-shadow:0 18px 40px rgba(0,0,0,.3);
+}
+.gallery button:first-child{grid-row:span 4;}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .6s;filter:saturate(.9);}
+.gallery button:hover img{transform:scale(1.07);filter:saturate(1.1) brightness(1.05);}
+.gallery button::after{
+  content:"＋";position:absolute;right:12px;bottom:10px;color:var(--surface);font-size:1rem;
+  opacity:0;transform:translateY(6px);transition:.4s var(--ease);
+}
+.gallery button:hover::after{opacity:1;transform:none;}
 
-.certificate-meta{
-  font-size:0.9rem;
-  color:var(--muted);
-  margin-top:5px;
-}
+.bball-intro{color:var(--muted-light);line-height:1.9;margin-bottom:28px;}
+.bball-intro strong{color:var(--surface);font-weight:500;}
 
-.certificate-link{
-  display:inline-block;
-  margin-top:10px;
-  color:var(--burgundy);
-  text-decoration:none;
-  font-size:0.88rem;
-}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:30px;}
+.stat-box{border:1px solid var(--border);padding:18px;border-radius:8px;background:rgba(245,234,216,.03);}
+.stat-box .num{font-family:var(--serif);font-size:2rem;color:var(--soft-gold);line-height:1;}
+.stat-box .lbl{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-light);margin-top:8px;}
 
-.certificate-link:hover{
-  color:var(--emerald);
-  text-decoration:underline;
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:6px;position:relative;}
+.tab{
+  background:none;border:0;cursor:pointer;color:var(--muted-light);
+  font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  padding:14px 14px;transition:color .3s;
 }
+.tab[aria-selected="true"]{color:var(--soft-gold);}
+.tab-ink{position:absolute;bottom:-1px;height:2px;background:var(--gold);transition:left .45s var(--ease),width .45s var(--ease);}
+.panel{display:none;}
+.panel.active{display:block;animation:fadeUp .6s var(--ease);}
+.honours{list-style:none;}
+.honours li{
+  display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;
+  padding:16px 4px;border-bottom:1px solid rgba(200,167,106,.12);
+  color:var(--muted-light);line-height:1.6;transition:padding-left .35s var(--ease),background .35s;
+}
+.honours li:hover{padding-left:12px;background:rgba(200,167,106,.05);}
+.honours li strong{color:var(--surface);font-weight:500;}
+.honours .yr{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.05rem;min-width:62px;}
+.bball-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
 
-.contact-layout{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
+/* ---------- Leadership timeline ---------- */
+.timeline{position:relative;max-width:900px;margin:auto;}
+.timeline::before{
+  content:"";position:absolute;left:150px;top:0;bottom:0;width:1px;background:var(--line-dark);
 }
+.timeline .fill{
+  position:absolute;left:150px;top:0;width:1px;height:0;
+  background:linear-gradient(var(--burgundy),var(--gold));
+}
+.t-item{display:grid;grid-template-columns:150px 1fr;position:relative;padding:0 0 46px;}
+.t-year{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--burgundy);padding-right:36px;text-align:right;padding-top:2px;}
+.t-body{padding-left:40px;position:relative;}
+.t-body::before{
+  content:"";position:absolute;left:-6px;top:9px;width:11px;height:11px;border-radius:50%;
+  background:var(--surface);border:1.5px solid var(--burgundy);transition:background .4s,transform .4s var(--ease);
+}
+.t-item.in .t-body::before{background:var(--gold);border-color:var(--gold);transform:scale(1.2);}
+.t-body h3{font-size:1.4rem;margin-bottom:6px;}
+.t-body p{color:var(--muted);line-height:1.8;}
+.highlight-num{color:var(--burgundy-dark);font-weight:600;}
 
-.contact-link{
-  color:var(--burgundy);
-  text-decoration:none;
+/* ---------- Projects ---------- */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+.project{
+  border:1px solid var(--border);border-radius:14px;padding:40px 36px;
+  background:linear-gradient(160deg,rgba(245,234,216,.05),rgba(245,234,216,.01));
+  transition:transform .5s var(--ease),border-color .4s,box-shadow .5s;
+  transform-style:preserve-3d;
 }
+.project:hover{border-color:rgba(200,167,106,.6);box-shadow:0 30px 60px rgba(0,0,0,.35);}
+.project.feature{grid-column:span 2;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;}
+.project .idx{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1rem;margin-bottom:16px;display:block;}
+.project h3{color:var(--surface);font-size:2rem;}
+.project p{color:var(--muted-light);line-height:1.85;}
+.project .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.project .meta span{font-size:.72rem;letter-spacing:.08em;padding:6px 11px;border:1px solid var(--border);border-radius:999px;color:var(--soft-gold);}
+.live{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#9fd3b6;margin-bottom:14px;}
+.live i{width:7px;height:7px;border-radius:50%;background:#5fbf8a;animation:pulse 2s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(95,191,138,.6);}100%{box-shadow:0 0 0 10px rgba(95,191,138,0);}}
+.cb-visual{
+  aspect-ratio:4/3;border-radius:10px;border:1px solid var(--border);
+  background:linear-gradient(160deg,#2a151d,#120e0f);
+  padding:22px;display:flex;flex-direction:column;gap:10px;justify-content:center;
+}
+.cb-row{display:grid;grid-template-columns:1fr 60px 60px;gap:10px;align-items:center;font-size:.74rem;color:var(--muted-light);}
+.cb-row .b{height:6px;border-radius:3px;background:rgba(200,167,106,.15);overflow:hidden;}
+.cb-row .b i{display:block;height:100%;background:var(--gold);width:0;transition:width 1.4s var(--ease);}
+.in .cb-row .b i{width:var(--w);}
+.cb-row .ok{color:#9fd3b6;font-size:.7rem;text-align:right;}
+.cb-head{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
 
-.contact-link:hover{
-  color:var(--emerald);
-  text-decoration:underline;
+/* ---------- Beyond (competitions / service / languages) ---------- */
+.beyond{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);}
+.beyond-col{background:var(--card);padding:40px 34px;}
+.beyond-col ul{list-style:none;}
+.beyond-col li{padding:12px 0;border-bottom:1px solid var(--line-dark);color:var(--muted);line-height:1.6;font-size:.95rem;}
+.beyond-col li:last-child{border-bottom:0;}
+.beyond-col li strong{color:var(--burgundy-dark);font-weight:600;}
+
+/* ---------- Skills ---------- */
+.skills-cloud{display:flex;flex-wrap:wrap;gap:12px;}
+.skill{
+  padding:14px 22px;border:1px solid var(--border);border-radius:999px;
+  font-size:.92rem;color:var(--surface);
+  transition:transform .35s var(--ease),background .35s,color .35s,border-color .35s;
 }
+.skill:hover{background:var(--gold);color:var(--obsidian);border-color:var(--gold);transform:translateY(-4px);}
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:70px;}
+.cert{
+  border:1px solid var(--border);border-radius:12px;padding:26px;
+  display:flex;flex-direction:column;gap:6px;
+  background:rgba(245,234,216,.03);transition:border-color .4s,transform .4s var(--ease);
+}
+.cert:hover{border-color:var(--gold);transform:translateY(-4px);}
+.cert h4{font-size:1.35rem;color:var(--surface);font-weight:400;}
+.cert .meta{font-size:.82rem;color:var(--muted-light);}
+.subhead{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--surface);margin-top:70px;margin-bottom:-46px;}
+
+/* ---------- Contact ---------- */
+.contact-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:end;}
+.contact-wrap h2{margin-bottom:24px;}
+.contact-lead{color:var(--muted);line-height:1.9;max-width:460px;margin-bottom:34px;}
+.contact-list{list-style:none;border-top:1px solid var(--line-dark);}
+.contact-list li{border-bottom:1px solid var(--line-dark);}
+.contact-list a,.contact-list div{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:22px 4px;text-decoration:none;color:var(--burgundy-dark);
+  transition:padding .35s var(--ease),color .3s;
+}
+.contact-list a:hover{padding-left:14px;color:var(--burgundy);}
+.contact-list .k{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.contact-list .v{font-family:var(--serif);font-size:1.35rem;text-align:right;word-break:break-word;}
 
 footer{
-  padding:30px 60px;
-  border-top:1px solid var(--border);
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  color:var(--surface);
-  background:#080606;
+  padding:34px var(--gutter);
+  display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+  background:#080606;color:var(--muted-light);font-size:.78rem;letter-spacing:.08em;
 }
+footer .brand{color:var(--surface);font-size:1.3rem;}
+.to-top{background:none;border:1px solid var(--border);color:var(--soft-gold);width:42px;height:42px;border-radius:50%;cursor:pointer;transition:.3s;}
+.to-top:hover{background:var(--gold);color:var(--obsidian);}
 
-footer div:nth-child(2){
-  font-size:0.78rem;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  color:#c8b99f;
+/* ---------- Lightbox ---------- */
+.lightbox{
+  position:fixed;inset:0;z-index:2000;background:rgba(10,6,7,.92);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity .4s;
 }
-
-footer div:last-child{
-  text-align:right;
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox img{max-height:86vh;max-width:min(1100px,92vw);border-radius:8px;transform:scale(.94);transition:transform .5s var(--ease);}
+.lightbox.open img{transform:none;}
+.lb-btn{
+  position:absolute;background:none;border:1px solid var(--border);color:var(--surface);
+  width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.1rem;transition:.3s;
 }
+.lb-btn:hover{background:var(--gold);color:var(--obsidian);}
+.lb-close{top:22px;right:22px;}
+.lb-prev{left:22px;top:50%;transform:translateY(-50%);}
+.lb-next{right:22px;top:50%;transform:translateY(-50%);}
 
-/* Nav switches to the hamburger menu earlier than the layout breakpoint
-   below, because the 8 nav links need ~994px to fit on one line without
-   crowding or clipping against the right edge. */
-@media(max-width:1050px){
-  nav{
-    padding:20px 24px;
+/* ---------- Responsive ---------- */
+@media(max-width:1080px){
+  .nav-links{
+    position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:center;gap:26px;
+    background:rgba(27,17,21,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    opacity:0;pointer-events:none;transition:opacity .45s var(--ease);
   }
-
-  .nav-links{display:none;}
-
-  .nav-links.active{
-    display:flex;
-    position:absolute;
-    top:100%;
-    left:0;
-    width:100%;
-    background:rgba(74,22,38,0.98);
-    flex-direction:column;
-    padding:20px;
-    gap:15px;
-  }
-
-  .hamburger{display:block;}
+  .nav-links.open{opacity:1;pointer-events:auto;}
+  .nav-links a,nav.scrolled .nav-links a{color:var(--surface);font-size:1rem;}
+  .nav-links a.active{color:var(--soft-gold);}
+  .hamburger{display:block;z-index:1;}
+  .hamburger.open span{background:var(--soft-gold);}
 }
 
 @media(max-width:900px){
-  section{
-    padding:90px 24px;
-  }
+  section{padding:96px var(--gutter);}
+  .hero-inner,.about-grid,.bball-top,.contact-wrap,.project.feature{grid-template-columns:1fr;}
+  .hero-inner{gap:50px;}
+  .hero-right{order:-1;}
+  .portrait{width:min(260px,64vw);}
+  .badge.b1{left:-8%;}
+  .badge.b2{right:-6%;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .hero-stat:nth-child(3){padding-left:0;border-left:0;}
+  .about-grid{gap:30px;}
+  .acad-grid,.beyond{grid-template-columns:1fr;}
+  .acad-card.wide{grid-column:auto;}
+  .projects{grid-template-columns:1fr;}
+  .project.feature{grid-column:auto;}
+  .gallery{grid-template-rows:repeat(4,90px);}
+  .timeline::before,.timeline .fill{left:6px;}
+  .t-item{grid-template-columns:1fr;}
+  .t-year{text-align:left;padding:0 0 6px 34px;}
+  .t-body{padding-left:34px;}
+  .t-body::before{left:0;}
+  .contact-wrap{gap:40px;}
+  .scroll-cue{display:none;}
+}
+@media(max-width:520px){
+  .stat-strip{grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .stat-box{padding:14px 10px;}
+  .stat-box .num{font-size:1.6rem;}
+  .bar-row{grid-template-columns:96px 1fr 40px;}
+  .acad-card,.beyond-col{padding:32px 22px;}
+  .project{padding:30px 22px;}
+  .badge{font-size:.68rem;padding:9px 12px;}
+  .tab{padding:12px 8px;font-size:.66rem;letter-spacing:.1em;}
+  .contact-list .v{font-size:1.1rem;}
+}
 
-  #home{
-    padding:110px 24px;
-  }
-
-  .hero-inner,
-  .bball-layout,
-  .contact-layout,
-  .academics-grid{
-    grid-template-columns:1fr;
-    display:grid;
-  }
-
-  .bball-gallery{
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-  }
-
-  .featured{
-    grid-row:auto;
-  }
-
-  .bball-gallery .bball-img{
-    height:260px;
-  }
-
-  .skills-wrap{
-    grid-template-columns:1fr;
-  }
-
-  .certificates-grid{
-    grid-template-columns:1fr;
-  }
-
-  .bball-stats,
-  .basketball-actions{
-    justify-content:center;
-  }
-
-  .about-content p{
-    font-size:1rem;
-  }
-
-  .hero-right{
-    justify-content:center;
-    margin-top:30px;
-  }
-
-  .profile-pic{
-    width:250px;
-    height:250px;
-  }
-
-  footer{
-    padding:30px 24px;
-    grid-template-columns:1fr;
-    gap:10px;
-    text-align:center;
-  }
-
-  footer div:last-child{
-    text-align:center;
-  }
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+  .reveal,.fade-up{opacity:1;transform:none;}
+  h1 .line > span{transform:none;}
+  .marquee-track{animation:none;}
 }
 </style>
 </head>
 
 <body>
 
+<div class="progress" aria-hidden="true"></div>
+
 <nav>
-  <div class="nav-links">
-    <a href="#home">Home</a>
+  <a href="#home" class="brand">R<span>.</span>B</a>
+  <div class="nav-links" id="navLinks">
     <a href="#about">About</a>
     <a href="#academics">Academics</a>
     <a href="#sports">Basketball</a>
-    <a href="#extracurriculars">Extracurriculars</a>
-    <a href="#projects">Projects</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#projects">Ventures</a>
+    <a href="#beyond">Beyond</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </div>
-  <div class="hamburger">☰</div>
+  <button class="hamburger" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
+<!-- ============ HERO ============ -->
 <section id="home">
+  <svg class="court" viewBox="0 0 900 600" aria-hidden="true">
+    <path d="M60 560 H840 V40 H60 Z"/>
+    <line x1="450" y1="40" x2="450" y2="560"/>
+    <circle cx="450" cy="300" r="80"/>
+    <path d="M60 180 H230 V420 H60"/>
+    <circle cx="230" cy="300" r="60"/>
+    <path d="M60 70 H130 A270 270 0 0 1 130 530 H60"/>
+    <path d="M840 180 H670 V420 H840"/>
+    <path d="M840 70 H770 A270 270 0 0 0 770 530 H840"/>
+  </svg>
+
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-eyebrow">Portfolio</div>
-      <h1>Rishith<br><em>Basuray</em></h1>
-      <div class="hero-tagline">Aspiring Economist | Basketball Enthusiast</div>
-      <p class="hero-desc">Balancing academics and sports with discipline.</p>
-      <a href="#academics" class="hero-cta">Explore Profile</a>
-      <a href="#about" class="about-cta">About Me</a>
-      <a href="#contact" class="contact-cta">Contact Me</a>
+      <div class="eyebrow fade-up">Portfolio · Bangalore, India</div>
+      <h1>
+        <span class="line"><span>Rishith</span></span>
+        <span class="line"><span><em>Basuray</em></span></span>
+      </h1>
+      <p class="hero-tagline fade-up">Aspiring economist &amp; <span class="rotator" id="rotator">point guard</span></p>
+      <p class="hero-desc fade-up">Balancing the discipline of the court with the rigour of the classroom: a national-level basketball player, student leader and founder of CourtBase.</p>
+      <div class="hero-ctas fade-up">
+        <a href="#academics" class="btn solid">Explore Profile <span class="arrow">→</span></a>
+        <a href="#contact" class="btn">Get in Touch</a>
+      </div>
+
+      <div class="hero-stats fade-up">
+        <div class="hero-stat"><div class="num" data-count="1510">0</div><div class="lbl">SAT superscore</div></div>
+        <div class="hero-stat"><div class="num" data-count="15.5" data-decimals="1">0</div><div class="lbl">PPG at Youth Nationals</div></div>
+        <div class="hero-stat"><div class="num"><span data-count="3">0</span>×</div><div class="lbl">State champion</div></div>
+        <div class="hero-stat"><div class="num"><span data-count="3">0</span>×</div><div class="lbl">MVP awards</div></div>
+      </div>
     </div>
 
-    <div class="hero-right">
-      <div class="profile-img">
-        <img src="profilepic.jpg.jpeg" alt="Rishith Basuray" class="profile-pic">
+    <div class="hero-right fade-up">
+      <div class="portrait">
+        <img src="profilepic.jpg.jpeg" alt="Rishith Basuray">
+        <div class="badge b1"><i></i>BFI National Academy</div>
+        <div class="badge b2"><i></i>Point Guard · 184 cm</div>
       </div>
     </div>
   </div>
+  <div class="scroll-cue" aria-hidden="true"></div>
 </section>
 
-<section id="about" class="about-section">
-  <div class="section-inner">
-    <h2>About Me</h2>
-    <div class="about-content">
-      <p>
-        Hi, I'm Rishith Basuray, a student with a passion for Economics, Mathematics, and Basketball.
-        I thrive on balancing academics and sports, believing that discipline and hard work are the keys to success.
-        As a Point Guard and Team Captain, I've led my team to multiple victories, learning the value of teamwork, leadership, and resilience.
-        Off the court, I enjoy diving into economic theories, solving mathematical problems, and exploring new technologies.
-        My goal is to pursue a career in Economics while continuing to grow as an athlete and a leader.
-      </p>
-    </div>
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>3× State Champions</span><span>MVP · TAISI U17 Nationals 2025</span><span>MVP · ISSO U17 Nationals 2024</span><span>BFI National Academy Scholar</span><span>SAT 1510</span><span>IELTS Band 8</span><span>Founder, CourtBase</span><span>Vice President, Student Council</span>
+    <span>3× State Champions</span><span>MVP · TAISI U17 Nationals 2025</span><span>MVP · ISSO U17 Nationals 2024</span><span>BFI National Academy Scholar</span><span>SAT 1510</span><span>IELTS Band 8</span><span>Founder, CourtBase</span><span>Vice President, Student Council</span>
   </div>
-</section>
-
-<section id="academics">
-  <div class="section-inner">
-    <h2>Academic Profile</h2>
-    <div class="academics-grid">
-      <div class="acad-card">
-        <h3>GPA & Standing</h3>
-        <p>Vice Captain of School, maintaining a GPA of <strong>3.65/4.0</strong>.</p>
-      </div>
-      <div class="acad-card">
-        <h3>Favorite Subjects</h3>
-        <p>Economics, Statistics, Calculus</p>
-      </div>
-      <div class="acad-card">
-  <h3>IELTS Score</h3>
-  <p>
-    Achieved an IELTS score of <strong>Band 8</strong>, demonstrating strong
-    English communication and academic language skills.
-  </p>
-  <a href="IELTS test score.pdf" class="project-link" target="_blank">
-    View IELTS TRF →
-  </a>
 </div>
-      <div class="acad-card">
-  <h3>SAT Score</h3>
-  <p>
-    Scored <strong>1480/1600</strong> (97th percentile) on the SAT, including
-    a perfect <strong>800</strong> on the Math section.
-  </p>
-  <a href="SAT Score Report.pdf" class="project-link" target="_blank">
-    View Score Report →
-  </a>
-</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="light">
+  <div class="section-inner about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About</div>
+      <h2>Discipline on the court, <em>curiosity</em> off it.</h2>
+    </div>
+    <div class="about-text reveal" data-delay="1">
+      <p>I'm Rishith Basuray, a student with a passion for Economics, Mathematics and Basketball. I was selected by the Basketball Federation of India for its National Basketball Academy on a full scholarship, and I study at Corvuss American Academy on the US curriculum.</p>
+      <p>As a point guard and team captain, I've learned that leadership means reading the game, making others better and taking responsibility when it matters. Off the court, I enjoy economic theory, statistics and building things. That's how CourtBase started, my platform for verifying grassroots basketball statistics.</p>
+      <p>My goal is to study Economics at university while continuing to compete at a high level.</p>
+      <div class="pillars">
+        <span class="pill">Economics</span><span class="pill">Mathematics</span><span class="pill">Basketball</span><span class="pill">Leadership</span><span class="pill">Building</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="sports">
+<!-- ============ ACADEMICS ============ -->
+<section id="academics" class="light" style="padding-top:0">
   <div class="section-inner">
-    <h2>Basketball</h2>
+    <div class="reveal">
+      <div class="eyebrow">Academics</div>
+      <h2>Academic <em>profile</em></h2>
+    </div>
 
-    <div class="bball-layout">
-      <div class="bball-gallery">
-        <a href="basketball1.jpg.jpeg" target="_blank" class="featured">
-          <img src="basketball1.jpg.jpeg" alt="Rishith with Basketball Trophy" class="bball-img">
-        </a>
-
-        <a href="basketball2jpg.jpeg" target="_blank">
-          <img src="basketball2jpg.jpeg" alt="Basketball Photo 2" class="bball-img">
-        </a>
-
-        <a href="basketball3jpg.jpeg" target="_blank">
-          <img src="basketball3jpg.jpeg" alt="Basketball Photo 3" class="bball-img">
-        </a>
-
-        <a href="basketball4jpg.jpeg" target="_blank">
-          <img src="basketball4jpg.jpeg" alt="Basketball Photo 4" class="bball-img">
-        </a>
-
-        <a href="basketball5jpg.jpeg" target="_blank">
-          <img src="basketball5jpg.jpeg" alt="Basketball Photo 5" class="bball-img">
-        </a>
+    <div class="acad-grid">
+      <div class="acad-card wide reveal spot">
+        <div class="kicker">Standardised testing · SAT</div>
+        <div class="big-num"><span data-count="1510">0</span><small>/ 1600 superscore</small></div>
+        <p>Two sittings, both scoring 1480, combining for a superscore that includes a perfect 800 in Math.</p>
+        <div class="score-bars">
+          <div class="bar-row"><span>Math</span><div class="bar"><i style="--w:100%"></i></div><b>800</b></div>
+          <div class="bar-row"><span>Reading &amp; Writing</span><div class="bar"><i style="--w:88.75%"></i></div><b>710</b></div>
+        </div>
+        <a href="SAT Score Report.pdf" class="text-link" target="_blank" rel="noopener">View score report →</a>
       </div>
 
-      <div>
-        <p>
-          As a <strong>Point Guard and Team Captain</strong>, I’ve led my team to multiple victories,
-          combining leadership, strategy, and athletic skill. Basketball has taught me discipline,
-          teamwork, and resilience.
-        </p>
+      <div class="acad-card reveal spot" data-delay="1">
+        <div class="kicker">English proficiency</div>
+        <div class="big-num">8<small>IELTS band</small></div>
+        <p>Strong English communication and academic language skills.</p>
+        <a href="IELTS test score.pdf" class="text-link" target="_blank" rel="noopener">View IELTS TRF →</a>
+      </div>
 
-       <ul class="achievements">
-  <li><strong>2x State Championship Winner</strong></li>
-  <li><strong>Highest Scorer in State Championship</strong></li>
-  <li><strong>MVP in ISSO India U17 Championship</strong></li>
-  <li><strong>Averaged 16 PPG</strong> in the U16 National Basketball Championship in 2025</li>
-  <li><strong>Represented State multiple times in National Championship</strong></li>
-</ul>
+      <div class="acad-card reveal spot">
+        <div class="kicker">Cumulative GPA</div>
+        <div class="big-num"><span data-count="3.62" data-decimals="2">0</span><small>/ 4.0</small></div>
+        <p>Corvuss American Academy, US High School Diploma programme.</p>
+      </div>
 
-        <div class="bball-stats">
-          <div class="bball-stat">
-            <div class="bball-stat-label">Height</div>
-            <div class="bball-stat-value">184 cm</div>
-          </div>
+      <div class="acad-card reveal spot" data-delay="1">
+        <div class="kicker">AP exams · May 2027</div>
+        <h3>Calculus BC &amp; Statistics</h3>
+        <p>Self-studied and registered externally through Bangalore International School, as my school does not offer AP courses. Microeconomics is being added.</p>
+      </div>
 
-          <div class="bball-stat">
-            <div class="bball-stat-label">Weight</div>
-            <div class="bball-stat-value">76 kg</div>
-          </div>
+      <div class="acad-card reveal spot" data-delay="2">
+        <div class="kicker">Strengths &amp; electives</div>
+        <h3>Strongest subjects</h3>
+        <div class="tag-list"><span class="tag">Calculus</span><span class="tag">Economics</span><span class="tag">English</span><span class="tag">Statistics</span></div>
+        <h3 style="margin-top:22px">Honors electives</h3>
+        <div class="tag-list"><span class="tag">Economics Honors</span><span class="tag">Physics Honors</span><span class="tag">Financial Literacy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div class="bball-stat">
-            <div class="bball-stat-label">Position</div>
-            <div class="bball-stat-value">Point Guard</div>
-          </div>
+<!-- ============ BASKETBALL ============ -->
+<section id="sports" class="dark">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="eyebrow">Basketball</div>
+      <h2>Leading from the <em>point</em></h2>
+    </div>
+
+    <div class="bball-top">
+      <div class="gallery reveal">
+        <button data-index="0"><img src="basketball1.jpg.jpeg" alt="Rishith with a basketball trophy" loading="lazy"></button>
+        <button data-index="1"><img src="basketball2jpg.jpeg" alt="Basketball photo 2" loading="lazy"></button>
+        <button data-index="2"><img src="basketball3jpg.jpeg" alt="Basketball photo 3" loading="lazy"></button>
+        <button data-index="3"><img src="basketball4jpg.jpeg" alt="Basketball photo 4" loading="lazy"></button>
+        <button data-index="4"><img src="basketball5jpg.jpeg" alt="Basketball photo 5" loading="lazy"></button>
+      </div>
+
+      <div class="reveal" data-delay="1">
+        <p class="bball-intro">Selected by the <strong>Basketball Federation of India</strong> for its <strong>National Basketball Academy</strong>, one of <strong>25 chosen from 150+ players</strong> drawn from the National Games, on a full scholarship. I captain my school and club teams and intend to keep competing at university.</p>
+
+        <div class="stat-strip">
+          <div class="stat-box"><div class="num" data-count="15.5" data-decimals="1">0</div><div class="lbl">PPG · Youth Nationals</div></div>
+          <div class="stat-box"><div class="num"><span data-count="184">0</span></div><div class="lbl">Height (cm)</div></div>
+          <div class="stat-box"><div class="num">PG</div><div class="lbl">Position</div></div>
         </div>
 
-        <div class="basketball-actions">
-          <a href="https://drive.google.com/drive/folders/1LBYugmSXaQcG9Z29s7NufthQAaGEheEK?usp=drive_link" class="highlight-cta" target="_blank">
-            Watch My Highlights
-          </a>
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="true" data-tab="ind">Individual</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="team">Team</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="sel">Selection</button>
+          <span class="tab-ink"></span>
+        </div>
 
-          <a href="https://drive.google.com/drive/folders/1mp8-RzSaXDEcM7pRqZmefhPEs1gES807?usp=drive_link" class="gallery-cta" target="_blank">
-           View Certificates
-          </a>
+        <div class="panel active" id="ind" role="tabpanel">
+          <ul class="honours">
+            <li><span class="yr">2025–26</span><span><strong>15.5 points per game</strong> at India's Youth National Championship (BFI)</span></li>
+            <li><span class="yr">2025</span><span><strong>MVP</strong>, TAISI India U17 National Championship</span></li>
+            <li><span class="yr">2025</span><span><strong>Highest scorer</strong>, State Championship</span></li>
+            <li><span class="yr">2024</span><span><strong>MVP</strong>, ISSO India U17 National Championship</span></li>
+            <li><span class="yr">2024</span><span><strong>MVP</strong>, Hedgers Summer League</span></li>
+            <li><span class="yr">State</span><span><strong>Tournament top scorer</strong> in two of three state championship wins</span></li>
+          </ul>
+        </div>
+        <div class="panel" id="team" role="tabpanel">
+          <ul class="honours">
+            <li><span class="yr">State</span><span><strong>3× State Championship winners</strong>; 2× 2nd runners-up</span></li>
+            <li><span class="yr">2025</span><span><strong>Winners</strong>, TAISI India U17 National Championship</span></li>
+            <li><span class="yr">2025</span><span><strong>2nd runners-up</strong>, ISSO India U17 National Championship</span></li>
+            <li><span class="yr">2024</span><span><strong>Winners</strong>, ISSO India U17 National Championship</span></li>
+            <li><span class="yr">2024</span><span><strong>Winners</strong>, Hedgers Summer League</span></li>
+          </ul>
+        </div>
+        <div class="panel" id="sel" role="tabpanel">
+          <ul class="honours">
+            <li><span class="yr">BFI</span><span><strong>National Basketball Academy</strong>: 25 selected from 150+ players, full scholarship</span></li>
+            <li><span class="yr">2025</span><span>Selected for the <strong>Khelo India Assessment Camp</strong></span></li>
+            <li><span class="yr">State</span><span>Represented the <strong>State team twice</strong> at the National Championship</span></li>
+          </ul>
+        </div>
+
+        <div class="bball-actions">
+          <a href="https://drive.google.com/drive/folders/1LBYugmSXaQcG9Z29s7NufthQAaGEheEK?usp=drive_link" class="btn gold" target="_blank" rel="noopener">Watch Highlights <span class="arrow">→</span></a>
+          <a href="https://drive.google.com/drive/folders/1mp8-RzSaXDEcM7pRqZmefhPEs1gES807?usp=drive_link" class="btn ghost-light" target="_blank" rel="noopener">View Certificates</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="extracurriculars">
+<!-- ============ LEADERSHIP ============ -->
+<section id="leadership" class="light">
   <div class="section-inner">
-    <h2>Extracurriculars</h2>
+    <div class="reveal" style="text-align:center">
+      <div class="eyebrow">Leadership</div>
+      <h2>Leading <em>beyond</em> the scoreboard</h2>
+    </div>
 
-    <div class="projects-list">
-      <div class="project-row">
-        <h3>Vice Captain of School</h3>
-        <p>Serving as Vice Captain, helping organize school events, student activities, and leadership initiatives.</p>
+    <div class="timeline" id="timeline">
+      <div class="fill"></div>
+      <div class="t-item reveal">
+        <div class="t-year">2026–27</div>
+        <div class="t-body"><h3>House Captain</h3><p>Corvuss American Academy, elected by faculty vote.</p></div>
       </div>
-
-      <div class="project-row">
-        <h3>School Nature Club</h3>
-        <p>Part of the School Nature Club, contributing to sustainability initiatives and supporting activities aligned with the United Nations Sustainable Development Goals.</p>
+      <div class="t-item reveal">
+        <div class="t-year">Oct 2026</div>
+        <div class="t-body"><h3>Co-organiser &amp; fund manager, team tournament trip</h3><p>With no finance manager travelling, three teammates and I stepped up. We collected and managed a <span class="highlight-num">₹3,00,000</span> pool from 14 travellers and booked every flight and stay with four days' notice during Diwali, India's peak travel season.</p></div>
       </div>
-
-      <div class="project-row">
-        <h3>Model United Nations</h3>
-        <p>Participated in MUN, developing public speaking, diplomacy, research, and debate skills through structured committee discussions.</p>
+      <div class="t-item reveal">
+        <div class="t-year">2025–26</div>
+        <div class="t-body"><h3>Vice President, Student Council</h3><p>Elected by faculty vote. Pitched and built the school debate competition end to end: proposed it to the administration, designed the format, and wrote the judging rubrics and judges' brief. Also helped organise Teachers' Day and school field trips.</p></div>
       </div>
-
-      <div class="project-row">
-        <h3>School Debate</h3>
-        <p>Helped organize a school debate and won the Best Speaker Award, demonstrating communication, persuasion, and critical thinking skills.</p>
+      <div class="t-item reveal">
+        <div class="t-year">2024 – now</div>
+        <div class="t-body"><h3>Team Captain, Corvuss American Academy</h3><p>Captain from my first year at the school. Also captain of Hedgers Basketball (club).</p></div>
       </div>
-
-      <div class="project-row">
-        <h3>Basketball Leadership</h3>
-        <p>Leading the school basketball team as Point Guard and Team Captain, representing the state at national championships.</p>
-      </div>
-
-      <div class="project-row">
-        <h3>Economics & Research</h3>
-        <p>Exploring inflation trends, economic crises, and statistical analysis through independent study and school projects.</p>
+      <div class="t-item reveal">
+        <div class="t-year">2022–24</div>
+        <div class="t-body"><h3>Team Captain, Jain Heritage School</h3><p>Captained the school team for two seasons and was named <strong>Jainite of the Month</strong>.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="projects">
+<!-- ============ PROJECTS / VENTURES ============ -->
+<section id="projects" class="dark">
   <div class="section-inner">
-    <h2>Projects</h2>
+    <div class="reveal">
+      <div class="eyebrow">Ventures &amp; Projects</div>
+      <h2>Things I've <em>built</em></h2>
+    </div>
 
-    <div class="projects-list">
-      <div class="project-row">
-        <h3>Courtbase</h3>
-        <p>A project aimed at improving the uniformity of basketball statistics and recruitment in India, giving players, coaches, and scouts a consistent way to track and compare performance data.</p>
-        <p><strong>Tools:</strong> Web Development, Data Standardization</p>
-        <a href="https://rishithbasuray.github.io/courtbase/" class="project-link" target="_blank">View Courtbase →</a>
-      </div>
+    <div class="projects">
+      <article class="project feature tilt spot reveal">
+        <div>
+          <span class="live"><i></i>Live · in testing</span>
+          <span class="idx">01 / Founder &amp; Developer</span>
+          <h3>CourtBase</h3>
+          <p>A live platform where coaches and league officials verify grassroots basketball statistics, so players are judged on evidence rather than reputation. I built it on my own, starting in July 2026.</p>
+          <div class="meta"><span>React</span><span>Supabase</span><span>Data standardisation</span></div>
+          <a href="https://rishithbasuray.github.io/courtbase/" class="text-link" target="_blank" rel="noopener">View CourtBase →</a>
+        </div>
+        <div class="cb-visual" aria-hidden="true">
+          <div class="cb-head">Verified stat line</div>
+          <div class="cb-row"><span>Points</span><div class="b"><i style="--w:78%"></i></div><span class="ok">✓ verified</span></div>
+          <div class="cb-row"><span>Assists</span><div class="b"><i style="--w:62%"></i></div><span class="ok">✓ verified</span></div>
+          <div class="cb-row"><span>Rebounds</span><div class="b"><i style="--w:44%"></i></div><span class="ok">✓ verified</span></div>
+          <div class="cb-row"><span>Steals</span><div class="b"><i style="--w:36%"></i></div><span class="ok">✓ verified</span></div>
+        </div>
+      </article>
 
-      <div class="project-row">
+      <article class="project tilt spot reveal">
+        <span class="idx">02 / Founder · from Oct 2026</span>
+        <h3>Bengaluru Court Access Project</h3>
+        <p>A regulation court costs around ₹7 lakh, which puts the sport out of reach for low-income communities. I'm mapping Bengaluru's public court access gap and designing a low-cost adjustable hoop that can be built locally, with a step-by-step build guide. Free play-first camps with NGO partners run from mid-November 2026 to mid-January 2027, and the hoops stay with the communities permanently.</p>
+        <div class="meta"><span>Social impact</span><span>Design</span><span>NGO partnerships</span></div>
+      </article>
+
+      <article class="project tilt spot reveal" data-delay="1">
+        <span class="idx">03 / Research</span>
         <h3>Gender Discrimination Field Study</h3>
-        <p>Field study on gender discrimination in India, focusing on school life, sports environments, and equal opportunities through surveys and interviews.</p>
-        <p><strong>Tools:</strong> Survey Research, Interviews, Data Analysis, Graphs</p>
-        <a href="Gender Discrimination Field Study Project.pdf" class="project-link" target="_blank">Read Field Study →</a>
+        <p>A field study on gender discrimination in India, focusing on school life, sports environments and equal opportunities, built on surveys, interviews and data analysis.</p>
+        <div class="meta"><span>Survey research</span><span>Interviews</span><span>Data analysis</span></div>
+        <a href="Gender Discrimination Field Study Project.pdf" class="text-link" target="_blank" rel="noopener">Read the study →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEYOND ============ -->
+<section id="beyond" class="light">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="eyebrow">Beyond the classroom</div>
+      <h2>Competitions, service &amp; <em>more</em></h2>
+    </div>
+
+    <div class="beyond">
+      <div class="beyond-col reveal">
+        <h3>Competitions</h3>
+        <ul>
+          <li><strong>Best Speaker</strong>, school debate competition</li>
+          <li><strong>1st Place</strong>, School Science Quiz (2024–25)</li>
+          <li><strong>3rd Place</strong>, School Science Quiz (2025–26)</li>
+          <li>International Mathematical Olympiad (IMO)</li>
+          <li>International Science Olympiad (ISO)</li>
+          <li>Model United Nations (2023–24)</li>
+        </ul>
+      </div>
+      <div class="beyond-col reveal" data-delay="1">
+        <h3>Community &amp; service</h3>
+        <ul>
+          <li><strong>Founder</strong>, Bengaluru Court Access Project</li>
+          <li>Teaching basketball to underprivileged children</li>
+          <li>Active member of the Nature Club, contributing to sustainability work aligned with the UN SDGs</li>
+        </ul>
+      </div>
+      <div class="beyond-col reveal" data-delay="2">
+        <h3>Languages &amp; music</h3>
+        <ul>
+          <li><strong>Languages:</strong> English, Hindi, Bengali and Kannada</li>
+          <li><strong>Piano:</strong> Trinity College London, Grade 1 certification</li>
+          <li><strong>Next:</strong> an economics research project, and competitive basketball at university</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section id="skills">
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="dark">
   <div class="section-inner">
-    <h2>Skills</h2>
-
-    <div class="skills-wrap">
-      <div class="skill-item">Analytical Thinking</div>
-      <div class="skill-item">Problem Solving</div>
-      <div class="skill-item">Leadership</div>
-      <div class="skill-item">Teamwork</div>
-      <div class="skill-item">Public Speaking</div>
-      <div class="skill-item">Quantitative Reasoning</div>
-      <div class="skill-item">Python</div>
-      <div class="skill-item">Excel</div>
-      <div class="skill-item">Data Analysis</div>
+    <div class="reveal">
+      <div class="eyebrow">Skills</div>
+      <h2>What I <em>bring</em></h2>
+    </div>
+    <div class="skills-cloud reveal">
+      <span class="skill">Analytical Thinking</span><span class="skill">Quantitative Reasoning</span><span class="skill">Leadership</span><span class="skill">Problem Solving</span><span class="skill">Public Speaking</span><span class="skill">Teamwork</span><span class="skill">Python</span><span class="skill">React</span><span class="skill">Supabase</span><span class="skill">Excel</span><span class="skill">Data Analysis</span><span class="skill">Financial Management</span>
     </div>
 
-    <div class="certificates-section">
-      <h2>Certificates</h2>
-
-      <div class="certificates-grid">
-        <div class="certificate-card">
-          <h4>Microsoft Excel</h4>
-          <p class="certificate-meta">Coursera · 2026</p>
-          <a href="https://coursera.org/share/010e09f5763d9e8d8e80d1a9c7abd5c0" class="certificate-link" target="_blank">
-            View Certificate
-          </a>
-        </div>
-
-      <div class="certificate-card">
-  <h4>Python Data Structures</h4>
-  <p class="certificate-meta">Coursera · 2026</p>
-  <a href="https://coursera.org/share/ff07c23df26ba3b7902e33ca5147e9e8" class="certificate-link" target="_blank">
-    View Certificate
-  </a>
-</div>
+    <h3 class="subhead reveal">Certificates</h3>
+    <div class="certs">
+      <div class="cert reveal">
+        <h4>Microsoft Excel</h4>
+        <span class="meta">Coursera · 2026</span>
+        <a href="https://coursera.org/share/010e09f5763d9e8d8e80d1a9c7abd5c0" class="text-link" target="_blank" rel="noopener">View certificate →</a>
+      </div>
+      <div class="cert reveal" data-delay="1">
+        <h4>Python Data Structures</h4>
+        <span class="meta">Coursera · 2026</span>
+        <a href="https://coursera.org/share/ff07c23df26ba3b7902e33ca5147e9e8" class="text-link" target="_blank" rel="noopener">View certificate →</a>
+      </div>
+      <div class="cert reveal" data-delay="2">
+        <h4>Piano, Grade 1</h4>
+        <span class="meta">Trinity College London</span>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact">
-  <div class="section-inner">
-    <h2>Contact</h2>
-
-    <div class="contact-layout">
-      <div>
-        <h3>Email</h3>
-        <p><a href="mailto:rishith.basuray@corvuss.in" class="contact-link">rishith.basuray@corvuss.in</a></p>
-
-        <h3>Phone</h3>
-        <p><a href="tel:9986576516" class="contact-link">+91 99865 76516</a></p>
-
-        <h3>Location</h3>
-        <p>Bangalore, Karnataka</p>
-      </div>
-
-      <div>
-        <h3>Social</h3>
-        <p><a href="https://www.linkedin.com/in/rishith-basuray-b3bb37391/" class="contact-link" target="_blank">LinkedIn</a></p>
-      </div>
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="light">
+  <div class="section-inner contact-wrap">
+    <div class="reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's <em>connect</em></h2>
+      <p class="contact-lead">Whether it's basketball, economics or CourtBase, I'm always happy to talk.</p>
+      <a href="mailto:rishith.basuray@corvuss.in" class="btn solid">Send an Email <span class="arrow">→</span></a>
     </div>
+    <ul class="contact-list reveal" data-delay="1">
+      <li><a href="mailto:rishith.basuray@corvuss.in"><span class="k">Email</span><span class="v">rishith.basuray@corvuss.in</span></a></li>
+      <li><a href="tel:+919986576516"><span class="k">Phone</span><span class="v">+91 99865 76516</span></a></li>
+      <li><a href="https://www.linkedin.com/in/rishith-basuray-b3bb37391/" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">Rishith Basuray ↗</span></a></li>
+      <li><div><span class="k">Location</span><span class="v">Bangalore, Karnataka</span></div></li>
+    </ul>
   </div>
 </section>
 
 <footer>
-  <div>Rishith Basuray</div>
-  <div>All Rights Reserved</div>
-  <div> Economics · Basketball</div>
+  <a href="#home" class="brand">Rishith Basuray</a>
+  <span>Economics · Basketball · © <span id="year"></span></span>
+  <button class="to-top" aria-label="Back to top">↑</button>
 </footer>
 
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-btn lb-close" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev" aria-label="Previous photo">←</button>
+  <img alt="">
+  <button class="lb-btn lb-next" aria-label="Next photo">→</button>
+</div>
+
 <script>
-  document.querySelector('.hamburger').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('active');
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Nav state + scroll progress
+  var nav = document.querySelector('nav');
+  var progress = document.querySelector('.progress');
+  var fill = document.querySelector('.timeline .fill');
+  var timeline = document.getElementById('timeline');
+  function onScroll(){
+    var y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 40);
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    if (timeline){
+      var r = timeline.getBoundingClientRect();
+      var p = Math.min(Math.max((window.innerHeight * 0.6 - r.top) / r.height, 0), 1);
+      fill.style.height = (p * 100) + '%';
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Mobile menu
+  var burger = document.querySelector('.hamburger');
+  var links = document.getElementById('navLinks');
+  function setMenu(open){
+    burger.classList.toggle('open', open);
+    links.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){ setMenu(!links.classList.contains('open')); });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+  // Active nav link
+  var navMap = {};
+  links.querySelectorAll('a').forEach(function(a){ navMap[a.getAttribute('href').slice(1)] = a; });
+  var secObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting && navMap[e.target.id]){
+        links.querySelectorAll('a').forEach(function(a){ a.classList.remove('active'); });
+        navMap[e.target.id].classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(function(s){ secObs.observe(s); });
+
+  // Count-up numbers
+  function countUp(el){
+    if (el.dataset.done) return;
+    el.dataset.done = 1;
+    var target = parseFloat(el.dataset.count), dec = parseInt(el.dataset.decimals || 0, 10);
+    if (reduce){ el.textContent = target.toFixed(dec); return; }
+    var start = null, dur = 1800;
+    function step(t){
+      if (!start) start = t;
+      var p = Math.min((t - start) / dur, 1), eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = (target * eased).toFixed(dec);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Reveal on scroll
+  var revObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      if (e.target.dataset.count) countUp(e.target);
+      revObs.unobserve(e.target);
+    });
+  }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal, .hero-stats, .stat-strip').forEach(function(el){ revObs.observe(el); });
+
+  // Rotating tagline
+  var words = ['point guard', 'team captain', 'founder of CourtBase', 'student leader'];
+  var rot = document.getElementById('rotator'), wi = 0;
+  if (!reduce){
+    setInterval(function(){
+      wi = (wi + 1) % words.length;
+      var w = words[wi], i = 0;
+      rot.textContent = '';
+      var t = setInterval(function(){
+        rot.textContent = w.slice(0, ++i);
+        if (i >= w.length) clearInterval(t);
+      }, 55);
+    }, 3200);
+  }
+
+  // Tabs
+  var tabs = document.querySelectorAll('.tab');
+  var ink = document.querySelector('.tab-ink');
+  function moveInk(tab){ ink.style.left = tab.offsetLeft + 'px'; ink.style.width = tab.offsetWidth + 'px'; }
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected', 'false'); });
+      tab.setAttribute('aria-selected', 'true');
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('active', p.id === tab.dataset.tab); });
+      moveInk(tab);
+    });
   });
+  moveInk(tabs[0]);
+  window.addEventListener('resize', function(){ moveInk(document.querySelector('.tab[aria-selected="true"]')); });
+
+  // Cursor spotlight + gentle tilt (desktop only)
+  if (finePointer && !reduce){
+    document.querySelectorAll('.spot').forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = e.clientX - r.left, y = e.clientY - r.top;
+        card.style.setProperty('--mx', x + 'px');
+        card.style.setProperty('--my', y + 'px');
+        if (card.classList.contains('tilt')){
+          var rx = ((y / r.height) - 0.5) * -5, ry = ((x / r.width) - 0.5) * 5;
+          card.style.transform = 'perspective(1000px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-4px)';
+        }
+      });
+      card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+    });
+  }
+
+  // Lightbox
+  var shots = Array.prototype.map.call(document.querySelectorAll('.gallery img'), function(i){ return i.getAttribute('src'); });
+  var lb = document.getElementById('lightbox'), lbImg = lb.querySelector('img'), cur = 0;
+  function show(i){ cur = (i + shots.length) % shots.length; lbImg.src = shots[cur]; }
+  function openLb(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+  function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+  document.querySelectorAll('.gallery button').forEach(function(b){
+    b.addEventListener('click', function(){ openLb(parseInt(b.dataset.index, 10)); });
+  });
+  lb.querySelector('.lb-close').addEventListener('click', closeLb);
+  lb.querySelector('.lb-prev').addEventListener('click', function(){ show(cur - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function(){ show(cur + 1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') show(cur - 1);
+    if (e.key === 'ArrowRight') show(cur + 1);
+  });
+
+  document.querySelector('.to-top').addEventListener('click', function(){ window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); });
+})();
 </script>
 
 </body>
 </html>
-```
